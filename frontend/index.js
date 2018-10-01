@@ -11,7 +11,6 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
-  // debugger
   if (e.keyCode == 39) {
     rightPressed = true;
   } else if (e.keyCode == 37) {
@@ -37,12 +36,7 @@ function drawSquare() {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // drawSquare();
-  ctx.beginPath();
-  ctx.rect(x, y, 80, 80);
-  ctx.fillStyle = "#FF0000";
-  ctx.fill();
-  ctx.closePath();
+  drawSquare();
   // x += dx;
   if (y < 560) {
     y -= dy;
