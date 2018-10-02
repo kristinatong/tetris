@@ -3,28 +3,70 @@
 
 <head>
   <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
   <title>Tetris</title>
   <style>
     * {
       padding: 0;
       margin: 0;
     }
+    body{
+      background-color: #E4D3ED;
+    }
 
     canvas {
       background: #eee;
       display: block;
-      margin: 0 auto;
+      /* margin: 70px auto; */
     }
+
+    #myCanvas{
+     margin: 70px auto;
+    }
+
+    #myCanvas1{
+      background: white;
+      margin: -500px 90px;
+      border: 3px solid lightgray;
+    }
+
+    #myCanvas2{
+      background: white;
+      margin: auto 985px;
+      border: 3px solid lightgray;
+    }
+
+
+
+
   </style>
 </head>
 
 <body>
+  <h2>Tetris</h2>
 
-  <canvas id="myCanvas" width="400" height="640"></canvas>
+  <canvas id="myCanvas" width="400" height="640">
 
-  <script type="text/javascript" src="arielle.js"></script>
-  <script type="text/javascript" src="kris.js"></script>
-  <script type="text/javascript" src="index.js"></script>
+  </canvas>
+
+  <canvas id="myCanvas1" width="300" height="240">
+
+
+  </canvas>
+
+
+  <canvas id="myCanvas2" width="300" height="240">
+
+
+  </canvas>
+
+
+
+
+  <script type="text/javascript" src="../frontend/tetromenos.js"></script>
+  <script type="text/javascript" src="../frontend/gamepage.js"></script>
+  <script type="text/javascript" src="../frontend/arielle.js"></script>
 
 </body>
 
