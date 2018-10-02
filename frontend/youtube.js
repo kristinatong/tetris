@@ -70,7 +70,6 @@ function Piece(tetromino,color){
     // we need to control the pieces
     this.x = 3;
     this.y = -2;
-    debugger
 }
 
 // fill function
@@ -104,6 +103,7 @@ Piece.prototype.unDraw = function(){
 Piece.prototype.moveDown = function(){
     if(!this.collision(0,1,this.activeTetromino)){
         this.unDraw();
+
         this.y++;
         this.draw();
     }else{
