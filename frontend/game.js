@@ -1,7 +1,8 @@
 
-const cvs = document.getElementById("myCanvas");
-const ctx = cvs.getContext("2d");
+const gameElement = document.getElementById("game");
+const ctx = gameElement.getContext("2d");
 const scoreElement = document.getElementById("score");
+const nextElement = document.getElementById("next");
 
 const ROW = 20;
 const COL = 10;

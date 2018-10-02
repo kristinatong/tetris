@@ -9,7 +9,6 @@ class Piece {
 
   }
 
-
   draw(){
     for( r = 0; r < this.activePattern.length; r++){
         for(c = 0; c < this.activePattern.length; c++){
