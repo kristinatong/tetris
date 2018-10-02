@@ -6,7 +6,7 @@ class Piece {
     this.activePattern = this.matrices[this.pattern];
     this.x = 3;
     this.y = -2;
-    
+
   }
 
 
@@ -169,7 +169,5 @@ class Piece {
     // update the board
     drawBoard();
   }
-
-
 
 }
