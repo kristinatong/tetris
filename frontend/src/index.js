@@ -34,13 +34,13 @@ const holdBoardSpec = {
 }
 
 const PIECES = [
-  [Z, "#f5afb6"],
-  [S, "#F5BC79"],
+  [Z, "#FADBD8  "],
+  [S, "#F5CBA7"],
   [T, "#FFF2AE"],
-  [O, "#D9D2FE"],
+  [O, "#F1948A"],
   [L, "#B9EFFE"],
   [I, "#B8FEC3"],
-  [J, "#AFF6F5"]
+  [J, "#A3E4D7"]
 ];
 
 // draw a square
