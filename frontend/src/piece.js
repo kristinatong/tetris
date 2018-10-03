@@ -1,19 +1,19 @@
 class Piece {
-  constructor(matrices, color) {
+  constructor(matrices, color, sq) {
     this.matrices = matrices;
     this.color = color;
+    this.sq = sq
     this.pattern = 0;
     this.activePattern = this.matrices[this.pattern];
     this.x = 3;
     this.y = -2;
-
   }
 
   draw(){
-    for( r = 0; r < this.activePattern.length; r++){
-        for(c = 0; c < this.activePattern.length; c++){
+    for(let r = 0; r < this.activePattern.length; r++){
+        for(let c = 0; c < this.activePattern.length; c++){
             if( this.activePattern[r][c]){
-                drawSquare(this.x + c,this.y + r, this.color);
+                drawSquare(this.x + c,this.y + r, this.color,this.sq);
             }
         }
     }
@@ -21,10 +21,10 @@ class Piece {
 
   // undraw a piece
   undraw(){
-    for( r = 0; r < this.activePattern.length; r++){
-        for(c = 0; c < this.activePattern.length; c++){
+    for(let r = 0; r < this.activePattern.length; r++){
+        for(let c = 0; c < this.activePattern.length; c++){
             if( this.activePattern[r][c]){
-                drawSquare(this.x + c,this.y + r, VACANT);
+                drawSquare(this.x + c,this.y + r, empty,this.sq);
             }
         }
     }
@@ -42,7 +42,7 @@ class Piece {
         let newY = this.y + j + y;
 
         // conditions
-        if (newX < 0 || newX >= COL || newY >= ROW) {
+        if (newX < 0 || newX >= gameBoard.width || newY >= gameBoard.height) {
           return true;
         }
         // skip newY < 0; board[-1] will crush our game
@@ -50,7 +50,7 @@ class Piece {
           continue;
         }
         // check if there is a locked piece alrady in place
-        if (board[newY][newX] != VACANT) {
+        if (gameBoard.board[newY][newX] != empty) {
           return true;
         }
       }
@@ -59,7 +59,7 @@ class Piece {
   }
 
 
-  moveDown() {
+  moveDown(speed) {
     if (!this.collision(0, 1, this.activePattern)) {
       this.undraw()
       this.y++
@@ -95,7 +95,7 @@ class Piece {
     let kick = 0;
 
     if (this.collision(0, 0, nextPattern)) {
-      if (this.x > COL / 2) {
+      if (this.x > gameBoard.width / 2) {
         // it's the right wall
         kick = -1; // we need to move the piece to the left
       } else {
@@ -125,6 +125,22 @@ class Piece {
     nextPiece = randomPiece()
   }
 
+  hold(){
+    if(!holdPiece){
+      holdBoard.drawBoard()
+      holdPiece = p
+      p = nextPiece
+      nextPiece = randomPiece()
+      gameBoard.drawBoard();
+      holdBoard.drawPiece(holdPiece)
+    }else{
+      p = [holdPiece, holdPiece = p][0];
+      holdBoard.drawBoard()
+      holdBoard.drawPiece(holdPiece)
+      gameBoard.drawBoard();
+    }
+  }
+
   lock() {
     for(let j = 0; j < this.activePattern.length; j++){
         for(let i = 0; i < this.activePattern.length; i++){
@@ -140,33 +156,35 @@ class Piece {
                 break;
             }
             // we lock the piece
-            board[this.y+j][this.x+i] = this.color;
+            gameBoard.board[this.y+j][this.x+i] = this.color;
         }
     }
     // remove full rows
-    for(let j = 0; j < ROW; j++){
+    for(let j = 0; j < gameBoard.height; j++){
         let isRowFull = true;
-        for(let i = 0; i < COL; i++){
-            isRowFull = isRowFull && (board[j][i] != VACANT);
+        for(let i = 0; i < gameBoard.width; i++){
+            isRowFull = isRowFull && (gameBoard.board[j][i] != empty);
         }
         if(isRowFull){
             // if the row is full
             // we move down all the rows above it
             for(let y = j; y > 1; y--){
-                for(let i = 0; i < COL; i++){
-                    board[y][i] = board[y-1][i];
+                for(let i = 0; i < gameBoard.width; i++){
+                    gameBoard.board[y][i] = gameBoard.board[y-1][i];
                 }
             }
             // the top row board[0][..] has no row above it
-            for(let i = 0; i < COL; i++){
-                board[0][i] = VACANT;
+            for(let i = 0; i < gameBoard.width; i++){
+                gameBoard.board[0][i] = empty;
             }
             // increment the score
             score += 10;
+
         }
     }
     // update the board
-    drawBoard();
+    gameBoard.drawBoard();
+    nextBoard.drawBoard();
   }
 
 }

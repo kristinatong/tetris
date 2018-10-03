@@ -1,7 +1,6 @@
 
 const gameElement = document.getElementById("game");
 const ctx = gameElement.getContext("2d");
-var context = document.querySelector("canvas").getContext("2d")
 
 
 const ROW = 20;
@@ -38,12 +37,7 @@ for (r = 0; r < ROW; r++) {
   }
 }
 
-var render = function(){
-  context.game.width = document.documentElement.clientWidth * 0.5;
-  drawBoard()
-}
 
-window.addEventListener("resize", render);
 
 // draw the board
 function drawBoard() {

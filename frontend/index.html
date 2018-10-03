@@ -4,54 +4,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewpoint" content="width=device-width">
-  <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Sigmar+One" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
   <title>Tetris</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-    }
 
-    html{
-      height:100%;
-      width:100%;
-    }
-    body{
-      background-color: #E4D3ED;
-      min-height: 100%;
-      width:100%;
-      align-content: center;
-      display:grid;
-      justify-items:center;
-    }
-
-
-  </style>
 </head>
 
 <body>
-  <h2>Tetris</h2>
+  <h1>TETRIS</h1>
   <div class="canvas-container">
-    <!-- <canvas id="canvasboard" width="300" height="600"></canvas> -->
+  <audio autoplay loop><source src="tetris-gameboy-02.mp3"></audio>
+  <div id="play-button"><button type="button" value="play">PLAY</button></div>
 
-
-    <canvas id="game" width="300" height="600"></canvas>
-
-    <!-- <canvas id="scoreboard" width="100" height="100"></canvas> -->
-
-    <!-- <canvas id="next" width="100" height="100"></canvas> -->
-  </div>
-
-
-  <!-- <script type="text/javascript" src="../frontend/tetromenos.js"></script> -->
-  <!-- <script type="text/javascript" src="../frontend/gamepage.js"></script> -->
-  <!-- <script type="text/javascript" src="../frontend/arielle.js"></script> -->
-  <script type="text/javascript" src="../frontend/pieceMatrices.js"></script>
-  <!-- <script type="text/javascript" src="../frontend/kris.js"></script> -->
-  <script type="text/javascript" src="../frontend/piece.js"></script>
-  <script type="text/javascript" src="../frontend/game.js"></script>
+  <canvas id="game" width="400" height="500">
+  </canvas>
+</div>
+  <script type="text/javascript" src="../frontend/src/pieceMatrices.js"></script>
+  <script type="text/javascript" src="../frontend/src/board.js"></script>
+  <script type="text/javascript" src="../frontend/src/piece.js"></script>
+  <script type="text/javascript" src="../frontend/src/index.js"></script>
 </body>
 
 </html>
