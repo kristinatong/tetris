@@ -1,8 +1,8 @@
 
 const gameElement = document.getElementById("game");
 const ctx = gameElement.getContext("2d");
-const scoreElement = document.getElementById("score");
-const nextElement = document.getElementById("next");
+var context = document.querySelector("canvas").getContext("2d")
+
 
 const ROW = 20;
 const COL = 10;
@@ -37,6 +37,13 @@ for (r = 0; r < ROW; r++) {
     board[r][c] = VACANT;
   }
 }
+
+var render = function(){
+  context.game.width = document.documentElement.clientWidth * 0.5;
+  drawBoard()
+}
+
+window.addEventListener("resize", render);
 
 // draw the board
 function drawBoard() {
