@@ -22,13 +22,13 @@ class Board {
         this.board[j][i] = this.color;
       }
     }
-    
+
   }
 
   drawBoard() {
     for (let j = this.y; j < this.y+this.height; j++) {
       for (let i = this.x; i < this.x+this.width; i++) {
-        drawSquare(i, j, this.board[j][i], this.sq)
+        drawSquare(i, j, this.board[j][i], this.sq,this.borderColor)
       }
     }
   }

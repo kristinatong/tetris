@@ -13,7 +13,7 @@ class Piece {
     for(let r = 0; r < this.activePattern.length; r++){
         for(let c = 0; c < this.activePattern.length; c++){
             if( this.activePattern[r][c]){
-                drawSquare(this.x + c,this.y + r, this.color,this.sq);
+                drawSquare(this.x + c,this.y + r, this.color,this.sq,gray);
             }
         }
     }
@@ -24,7 +24,7 @@ class Piece {
     for(let r = 0; r < this.activePattern.length; r++){
         for(let c = 0; c < this.activePattern.length; c++){
             if( this.activePattern[r][c]){
-                drawSquare(this.x + c,this.y + r, empty,this.sq);
+                drawSquare(this.x + c,this.y + r, empty,this.sq,gray);
             }
         }
     }
@@ -194,6 +194,9 @@ class Piece {
     }
     combo = 0;
     console.log(score)
+    scoreBoard.drawBoard()
+    ctx.fillStyle=gray
+    ctx.fillText(`${score}`,291,350);
     gameBoard.drawBoard();
     nextBoard.drawBoard();
   }

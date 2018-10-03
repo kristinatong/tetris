@@ -13,7 +13,7 @@ const gameBoardSpec = {
   height: 20,
   sq: 25,
   color: empty,
-  borderColor: 'lightgray'
+  borderColor: gray
 }
 const nextBoardSpec = {
   x: 22,
@@ -21,8 +21,8 @@ const nextBoardSpec = {
   width: 6,
   height: 6,
   sq: 13,
-  color: 'white',
-  borderColor: 'white'
+  color: empty,
+  borderColor: gray
 
 }
 const holdBoardSpec = {
@@ -31,25 +31,34 @@ const holdBoardSpec = {
   width: 6,
   height: 6,
   sq: 13,
+  color: empty,
+  borderColor: gray
+}
+const scoreBoardSpec = {
+  x: 21,
+  y: 25,
+  width: 8,
+  height: 10,
+  sq: 13,
   color: 'white',
   borderColor: 'white'
 }
 
 const PIECES = [
   [Z, "#f5afb6"],
-  [S, "#F5BC79"],
+  [S, "#C7CEEA"],
   [T, "#FFF2AE"],
-  [O, "#D9D2FE"],
+  [O, "#FFDAC1"],
   [L, "#B9EFFE"],
   [I, "#B8FEC3"],
   [J, "#AFF6F5"]
 ];
 
 // draw a square
-function drawSquare(x, y, color, sq) {
+function drawSquare(x, y, color, sq,borderColor) {
   ctx.fillStyle = color;
   ctx.fillRect(x * sq, y * sq, sq, sq);
-  ctx.strokeStyle = gray;
+  ctx.strokeStyle = borderColor;
   ctx.strokeRect(x * sq, y * sq, sq, sq);
 }
 
@@ -59,13 +68,18 @@ gameBoard.drawBoard();
 const nextBoard = new Board(nextBoardSpec)
 nextBoard.drawBoard();
 ctx.font = "20px Arial";
-ctx.fillStyle = "gray";
+ctx.fillStyle = "gray"
 ctx.fillText("NEXT",295,50);
 const holdBoard = new Board(holdBoardSpec)
 holdBoard.drawBoard();
 ctx.font = "20px Arial";
-ctx.fillStyle = "gray";
+ctx.fillStyle = "gray"
 ctx.fillText("HOLD",295,185);
+const scoreBoard = new Board(scoreBoardSpec)
+scoreBoard.drawBoard();
+ctx.font = "20px Arial";
+ctx.fillStyle = "gray"
+ctx.fillText("SCORE",291,320);
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
@@ -89,9 +103,15 @@ document.addEventListener("keydown", (e) => {
   } else if (e.keyCode == 40 && !paused && gameStart) {
     p.moveDown();
     score += level*0.3
+    scoreBoard.drawBoard()
+    ctx.fillStyle=gray
+    ctx.fillText(`${score}`,291,350);
   } else if (e.keyCode == 32 && !paused && gameStart) {
     p.fastMoveDown();
     score += level*8
+    scoreBoard.drawBoard()
+    ctx.fillStyle=gray
+    ctx.fillText(`${score}`,291,350);
   } else if (e.keyCode == 27 && gameStart && !gameOver) {
     if (paused) {
       paused = false
@@ -140,9 +160,10 @@ document.addEventListener('click', (e) => {
     drop();
     gameStart = true;
     playButton.firstElementChild.remove()
-    audio.play()
+    audio.play();
   } else if (e.target.value === "resume") {
     paused = false
+    audio.play();
     playButton.firstElementChild.remove()
   }
 })
