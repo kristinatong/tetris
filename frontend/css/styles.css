@@ -20,13 +20,13 @@ body {
 canvas {
   background: #C5B1BD;
   display: block;
+  font-family: 'Sigmar One', cursive;
 }
 
-h1{
-  color:gray;
+h1 {
+  color: gray;
   font-family: 'Sigmar One', cursive;
   padding: 5px;
-
 }
 
 button {
