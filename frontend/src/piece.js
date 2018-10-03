@@ -59,7 +59,7 @@ class Piece {
   }
 
 
-  moveDown(speed) {
+  moveDown() {
     if (!this.collision(0, 1, this.activePattern)) {
       this.undraw()
       this.y++
@@ -114,7 +114,7 @@ class Piece {
     this.moveDown()
   }
 
-  fastMoveDown() {
+  fastMoveDown(n) {
     while (!this.collision(0, 1, this.activePattern)) {
       this.undraw()
       this.y++
@@ -178,11 +178,22 @@ class Piece {
                 gameBoard.board[0][i] = empty;
             }
             // increment the score
-            score += 10;
-
+            combo += 1
         }
     }
+
     // update the board
+    if(combo==1){
+      score += level*100
+    }else if(combo==2){
+      score += level*300;
+    }else if(combo==3){
+      score += level*500
+    }else if(combo==4){
+      score += level*800
+    }
+    combo = 0;
+    console.log(score)
     gameBoard.drawBoard();
     nextBoard.drawBoard();
   }

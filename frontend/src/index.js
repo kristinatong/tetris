@@ -4,6 +4,7 @@ const empty = "WHITE"; // color of an empty square
 const gray = "LIGHTGRAY"
 const black = "BLACK"
 const playButton = document.getElementById("play-button")
+const audio = document.getElementById("audio")
 const gameBoardSpec = {
   x: 0,
   y: 0,
@@ -24,7 +25,7 @@ const nextBoardSpec = {
 }
 const holdBoardSpec = {
   x: 22,
-  y: 13,
+  y: 15,
   width: 6,
   height: 6,
   sq: 13,
@@ -55,8 +56,12 @@ const gameBoard = new Board(gameBoardSpec)
 gameBoard.drawBoard();
 const nextBoard = new Board(nextBoardSpec)
 nextBoard.drawBoard();
+ctx.font = "20px Arial";
+ctx.strokeText("NEXT",300,60);
 const holdBoard = new Board(holdBoardSpec)
 holdBoard.drawBoard();
+ctx.font = "20px Arial";
+ctx.strokeText("HOLD",300,190);
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
@@ -71,23 +76,27 @@ document.addEventListener("keydown", (e) => {
   if (e.keyCode == 37 && !paused) {
     p.moveLeft();
     dropStart = Date.now();
-  } else if (e.keyCode == 38 && !paused) {
+  } else if (e.keyCode == 38 && !paused && gameStart) {
     p.rotate();
     dropStart = Date.now();
-  } else if (e.keyCode == 39 && !paused) {
+  } else if (e.keyCode == 39 && !paused && gameStart) {
     p.moveRight();
     dropStart = Date.now();
-  } else if (e.keyCode == 40 && !paused) {
+  } else if (e.keyCode == 40 && !paused && gameStart) {
     p.moveDown();
-  } else if (e.keyCode == 32 && !paused) {
+    score += level*0.3
+  } else if (e.keyCode == 32 && !paused && gameStart) {
     p.fastMoveDown();
-  } else if (e.keyCode == 27) {
+    score += level*8
+  } else if (e.keyCode == 27 && gameStart && !gameOver) {
     if (paused) {
       paused = false
       playButton.firstElementChild.remove()
+      audio.play()
     } else {
       paused = true
       playButton.innerHTML = `<button type="button" value="resume">RESUME</button>`
+      audio.pause()
     }
   } else if (e.keyCode == 16) {
     p.hold()
@@ -95,12 +104,14 @@ document.addEventListener("keydown", (e) => {
 });
 
 // drop the piece every 1sec
+let gameStart = false;
 let dropStart = Date.now();
 let gameOver = false;
 let paused = false;
 let score = 0;
 let speed = 2000;
-let level;
+let level = 1;
+let combo = 0;
 
 function drop() {
   nextBoard.drawBoard()
@@ -115,13 +126,17 @@ function drop() {
   }
   if (!gameOver) {
     requestAnimationFrame(drop);
+  } else {
+
   }
 }
 
 document.addEventListener('click', (e) => {
   if (e.target.value === "play") {
     drop();
+    gameStart = true;
     playButton.firstElementChild.remove()
+    audio.play()
   } else if (e.target.value === "resume") {
     paused = false
     playButton.firstElementChild.remove()
