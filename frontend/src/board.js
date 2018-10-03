@@ -6,7 +6,7 @@ class Board {
     height,
     sq,
     color,
-    borderColor
+    borderColor, text
   }) {
     this.x = x
     this.y = y
@@ -22,6 +22,7 @@ class Board {
         this.board[j][i] = this.color;
       }
     }
+    
   }
 
   drawBoard() {

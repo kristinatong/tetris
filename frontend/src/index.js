@@ -5,6 +5,7 @@ const gray = "LIGHTGRAY"
 const black = "BLACK"
 const playButton = document.getElementById("play-button")
 const audio = document.getElementById("audio")
+const sigmar = "Sigmar One"
 const gameBoardSpec = {
   x: 0,
   y: 0,
@@ -21,7 +22,8 @@ const nextBoardSpec = {
   height: 6,
   sq: 13,
   color: 'white',
-  borderColor: 'lightgray'
+  borderColor: 'white'
+
 }
 const holdBoardSpec = {
   x: 22,
@@ -30,17 +32,17 @@ const holdBoardSpec = {
   height: 6,
   sq: 13,
   color: 'white',
-  borderColor: 'lightgray'
+  borderColor: 'white'
 }
 
 const PIECES = [
-  [Z, "red"],
-  [S, "green"],
-  [T, "yellow"],
-  [O, "blue"],
-  [L, "purple"],
-  [I, "cyan"],
-  [J, "orange"]
+  [Z, "#f5afb6"],
+  [S, "#F5BC79"],
+  [T, "#FFF2AE"],
+  [O, "#D9D2FE"],
+  [L, "#B9EFFE"],
+  [I, "#B8FEC3"],
+  [J, "#AFF6F5"]
 ];
 
 // draw a square
@@ -57,11 +59,13 @@ gameBoard.drawBoard();
 const nextBoard = new Board(nextBoardSpec)
 nextBoard.drawBoard();
 ctx.font = "20px Arial";
-ctx.strokeText("NEXT",300,60);
+ctx.fillStyle = "gray";
+ctx.fillText("NEXT",295,50);
 const holdBoard = new Board(holdBoardSpec)
 holdBoard.drawBoard();
 ctx.font = "20px Arial";
-ctx.strokeText("HOLD",300,190);
+ctx.fillStyle = "gray";
+ctx.fillText("HOLD",295,185);
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
