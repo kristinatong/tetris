@@ -194,7 +194,7 @@ class Piece {
     }
     combo = 0;
     if(score > 500){
-      level = Math.floor(score/500)
+      level = Math.floor(score/500)+1
     }
     ctx.fillText(`${level}`,300,400);
     scoreBoard.drawBoard()

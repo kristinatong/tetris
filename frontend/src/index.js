@@ -54,8 +54,11 @@ const PIECES = [
   [J, "#A3E4D7"]
 ];
 
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
+
 // draw a square
-function drawSquare(x, y, color, sq,borderColor) {
+function drawSquare(x, y, color, sq, borderColor) {
   ctx.fillStyle = color;
   ctx.fillRect(x * sq, y * sq, sq, sq);
   ctx.strokeStyle = borderColor;
@@ -69,18 +72,18 @@ const nextBoard = new Board(nextBoardSpec)
 nextBoard.drawBoard();
 ctx.font = "20px Arial";
 ctx.fillStyle = "gray"
-ctx.fillText("NEXT",295,50);
+ctx.fillText("NEXT", 295, 50);
 const holdBoard = new Board(holdBoardSpec)
 holdBoard.drawBoard();
 ctx.font = "20px Arial";
 ctx.fillStyle = "gray"
-ctx.fillText("HOLD",295,185);
+ctx.fillText("HOLD", 295, 185);
 const scoreBoard = new Board(scoreBoardSpec)
 scoreBoard.drawBoard();
 ctx.font = "20px Arial";
 ctx.fillStyle = "gray"
-ctx.fillText("SCORE",291,320);
-ctx.fillStyle=gray
+ctx.fillText("SCORE", 291, 320);
+ctx.fillStyle = gray
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
@@ -105,22 +108,22 @@ document.addEventListener("keydown", (e) => {
     p.moveDown();
     score += 1
     scoreBoard.drawBoard()
-    ctx.fillStyle=gray
-    ctx.fillText(`${score}`,300,350);
-    if(score > 500){
-      level = Math.floor(score/500)
+    ctx.fillStyle = gray
+    ctx.fillText(`${score}`, 300, 350);
+    if (score > 500) {
+      level = Math.floor(score / 500)
     }
-    ctx.fillText(`${level}`,300,400);
+    ctx.fillText(`${level}`, 300, 400);
   } else if (e.keyCode == 32 && !paused && gameStart) {
     p.fastMoveDown();
     score += 8
     scoreBoard.drawBoard()
-    ctx.fillStyle=gray
-    ctx.fillText(`${score}`,300,350);
-    if(score > 500){
-      level = Math.floor(score/500)
+    ctx.fillStyle = gray
+    ctx.fillText(`${score}`, 300, 350);
+    if (score > 500) {
+      level = Math.floor(score / 500)
     }
-    ctx.fillText(`${level}`,291,400);
+    ctx.fillText(`${level}`, 291, 400);
   } else if (e.keyCode == 27 && gameStart && !gameOver) {
     if (paused) {
       paused = false
@@ -146,8 +149,8 @@ let speed = 2500;
 let level = 1;
 let combo = 0;
 
-ctx.fillText(`${score}`,300,350);
-ctx.fillText(`${level}`,300,400);
+ctx.fillText(`${score}`, 300, 350);
+ctx.fillText(`${level}`, 300, 400);
 
 function drop() {
   nextBoard.drawBoard()
@@ -166,9 +169,25 @@ function drop() {
 
   }
 }
-
+var span = document.getElementsByClassName("close")[0];
 document.addEventListener('click', (e) => {
   if (e.target.value === "play") {
+    modal.style.display = "block";
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // fetch('http://localhost:3000/users',{
+    //   method: "POST",
+    //   headers: {
+    //     "accept":"application/json",
+    //     "content-type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     name: "whatever"
+    //   })
+    // })
+
     drop();
     gameStart = true;
     playButton.firstElementChild.remove()
