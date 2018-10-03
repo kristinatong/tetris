@@ -45,13 +45,13 @@ const scoreBoardSpec = {
 }
 
 const PIECES = [
-  [Z, "#f5afb6"],
-  [S, "#C7CEEA"],
+  [Z, "#FADBD8  "],
+  [S, "#F5CBA7"],
   [T, "#FFF2AE"],
-  [O, "#FFDAC1"],
+  [O, "#F1948A"],
   [L, "#B9EFFE"],
   [I, "#B8FEC3"],
-  [J, "#AFF6F5"]
+  [J, "#A3E4D7"]
 ];
 
 // draw a square
