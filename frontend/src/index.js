@@ -80,6 +80,7 @@ scoreBoard.drawBoard();
 ctx.font = "20px Arial";
 ctx.fillStyle = "gray"
 ctx.fillText("SCORE",291,320);
+ctx.fillStyle=gray
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
@@ -102,16 +103,24 @@ document.addEventListener("keydown", (e) => {
     dropStart = Date.now();
   } else if (e.keyCode == 40 && !paused && gameStart) {
     p.moveDown();
-    score += level*0.3
+    score += 1
     scoreBoard.drawBoard()
     ctx.fillStyle=gray
-    ctx.fillText(`${score}`,291,350);
+    ctx.fillText(`${score}`,300,350);
+    if(score > 500){
+      level = Math.floor(score/500)
+    }
+    ctx.fillText(`${level}`,300,400);
   } else if (e.keyCode == 32 && !paused && gameStart) {
     p.fastMoveDown();
-    score += level*8
+    score += 8
     scoreBoard.drawBoard()
     ctx.fillStyle=gray
-    ctx.fillText(`${score}`,291,350);
+    ctx.fillText(`${score}`,300,350);
+    if(score > 500){
+      level = Math.floor(score/500)
+    }
+    ctx.fillText(`${level}`,291,400);
   } else if (e.keyCode == 27 && gameStart && !gameOver) {
     if (paused) {
       paused = false
@@ -133,9 +142,12 @@ let dropStart = Date.now();
 let gameOver = false;
 let paused = false;
 let score = 0;
-let speed = 2000;
+let speed = 2500;
 let level = 1;
 let combo = 0;
+
+ctx.fillText(`${score}`,300,350);
+ctx.fillText(`${level}`,300,400);
 
 function drop() {
   nextBoard.drawBoard()

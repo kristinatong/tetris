@@ -193,10 +193,13 @@ class Piece {
       score += level*800
     }
     combo = 0;
-    console.log(score)
+    if(score > 500){
+      level = Math.floor(score/500)
+    }
+    ctx.fillText(`${level}`,300,400);
     scoreBoard.drawBoard()
     ctx.fillStyle=gray
-    ctx.fillText(`${score}`,291,350);
+    ctx.fillText(`${score}`,300,350);
     gameBoard.drawBoard();
     nextBoard.drawBoard();
   }
