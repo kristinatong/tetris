@@ -5,6 +5,7 @@ const gray = "LIGHTGRAY"
 const black = "BLACK"
 const playButton = document.getElementById("play-button")
 const audio = document.getElementById("audio")
+const userName = document.getElementById('user-form')
 const sigmar = "Sigmar One"
 const gameBoardSpec = {
   x: 0,
@@ -139,6 +140,10 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+userName.addEventListener('submit',(e)=>{
+  const userInput = userName.name.value
+})
+
 // drop the piece every 1sec
 let gameStart = false;
 let dropStart = Date.now();
@@ -166,16 +171,16 @@ function drop() {
   if (!gameOver) {
     requestAnimationFrame(drop);
   } else {
-    fetch('http://localhost:3000/users',{
-      method: "POST",
-      headers: {
-        "accept":"application/json",
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        name: "whatever"
-      })
-    }).then(res => res.json()).then(data => new User(data))
+    // fetch('http://localhost:3000/users',{
+    //   method: "POST",
+    //   headers: {
+    //     "accept":"application/json",
+    //     "content-type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     name: userName.name.value
+    //   })
+    // }).then(res => res.json()).then(data => new User(data))
 
 
   }
