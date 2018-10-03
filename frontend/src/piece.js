@@ -196,10 +196,12 @@ class Piece {
     if(score > 500){
       level = Math.floor(score/500)+1
     }
-    ctx.fillText(`${level}`,300,400);
+    ctx.fillStyle=darkgray
+    ctx.fillText("LEVEL:",260,395);
+    ctx.fillText(`${level}`,350,395);
     scoreBoard.drawBoard()
-    ctx.fillStyle=gray
-    ctx.fillText(`${score}`,300,350);
+    ctx.fillText("SCORE:",260,370);
+    ctx.fillText(`${score}`,350,370);
     gameBoard.drawBoard();
     nextBoard.drawBoard();
   }

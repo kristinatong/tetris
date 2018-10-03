@@ -166,6 +166,17 @@ function drop() {
   if (!gameOver) {
     requestAnimationFrame(drop);
   } else {
+    fetch('http://localhost:3000/users',{
+      method: "POST",
+      headers: {
+        "accept":"application/json",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        name: "whatever"
+      })
+    }).then(res => res.json()).then(data => new User(data))
+
 
   }
 }
@@ -176,18 +187,6 @@ document.addEventListener('click', (e) => {
     span.onclick = function() {
       modal.style.display = "none";
     }
-
-    // fetch('http://localhost:3000/users',{
-    //   method: "POST",
-    //   headers: {
-    //     "accept":"application/json",
-    //     "content-type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     name: "whatever"
-    //   })
-    // })
-
     drop();
     gameStart = true;
     playButton.firstElementChild.remove()
