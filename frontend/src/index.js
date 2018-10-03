@@ -3,6 +3,7 @@ const ctx = gameElement.getContext("2d");
 const empty = "WHITE"; // color of an empty square
 const gray = "LIGHTGRAY"
 const black = "BLACK"
+const darkgray = "gray"
 const playButton = document.getElementById("play-button")
 const audio = document.getElementById("audio")
 const sigmar = "Sigmar One"
@@ -35,10 +36,10 @@ const holdBoardSpec = {
   borderColor: gray
 }
 const scoreBoardSpec = {
-  x: 21,
+  x: 20,
   y: 25,
-  width: 8,
-  height: 10,
+  width: 10,
+  height: 8,
   sq: 13,
   color: 'white',
   borderColor: 'white'
@@ -77,10 +78,10 @@ ctx.fillStyle = "gray"
 ctx.fillText("HOLD",295,185);
 const scoreBoard = new Board(scoreBoardSpec)
 scoreBoard.drawBoard();
-ctx.font = "20px Arial";
-ctx.fillStyle = "gray"
-ctx.fillText("SCORE",291,320);
-ctx.fillStyle=gray
+ctx.font = "19px Arial";
+ctx.fillText("SCORE:",260,370);
+ctx.fillText("LEVEL:",260,395);
+ctx.fillStyle=darkgray;
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
@@ -105,22 +106,26 @@ document.addEventListener("keydown", (e) => {
     p.moveDown();
     score += 1
     scoreBoard.drawBoard()
-    ctx.fillStyle=gray
-    ctx.fillText(`${score}`,300,350);
+    ctx.fillStyle=darkgray
+    ctx.fillText("SCORE:",265,370);
+    ctx.fillText(`${score}`,350,370);
     if(score > 500){
       level = Math.floor(score/500)
     }
-    ctx.fillText(`${level}`,300,400);
+    ctx.fillText("LEVEL:",265,395);
+    ctx.fillText(`${level}`,355,395);
   } else if (e.keyCode == 32 && !paused && gameStart) {
     p.fastMoveDown();
     score += 8
     scoreBoard.drawBoard()
-    ctx.fillStyle=gray
-    ctx.fillText(`${score}`,300,350);
+    ctx.fillStyle=darkgray
+    ctx.fillText("SCORE:",265,370);
+    ctx.fillText(`${score}`,350,370);
     if(score > 500){
       level = Math.floor(score/500)
     }
-    ctx.fillText(`${level}`,291,400);
+    ctx.fillText("LEVEL:",265,395);
+    ctx.fillText(`${level}`,350,395);
   } else if (e.keyCode == 27 && gameStart && !gameOver) {
     if (paused) {
       paused = false
@@ -145,9 +150,11 @@ let score = 0;
 let speed = 2500;
 let level = 1;
 let combo = 0;
-
-ctx.fillText(`${score}`,300,350);
-ctx.fillText(`${level}`,300,400);
+ctx.fillStyle=darkgray
+ctx.fillText("SCORE:",265,370);
+ctx.fillText(`${score}`,350,370);
+ctx.fillText("LEVEL:",265,395);
+ctx.fillText(`${level}`,350,395);
 
 function drop() {
   nextBoard.drawBoard()
