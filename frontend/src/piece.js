@@ -194,14 +194,18 @@ class Piece {
     }
     combo = 0;
     if(score > 500){
-      level = Math.floor(score/500)+1
+      level = Math.floor(score/500)
     }
     ctx.fillStyle=darkgray
-    ctx.fillText("LEVEL:",260,395);
-    ctx.fillText(`${level}`,350,395);
+    ctx.font = "16px Arial";
     scoreBoard.drawBoard()
+    ctx.fillText("LEVEL:",260,395);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${level}`,330,395);
+    ctx.font = "16px Arial";
     ctx.fillText("SCORE:",260,370);
-    ctx.fillText(`${score}`,350,370);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${score}`,330,370);
     gameBoard.drawBoard();
     nextBoard.drawBoard();
   }

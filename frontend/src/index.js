@@ -3,9 +3,9 @@ const ctx = gameElement.getContext("2d");
 const empty = "WHITE"; // color of an empty square
 const gray = "LIGHTGRAY"
 const black = "BLACK"
+const darkgray = "gray"
 const playButton = document.getElementById("play-button")
 const audio = document.getElementById("audio")
-const userName = document.getElementById('user-form')
 const sigmar = "Sigmar One"
 const gameBoardSpec = {
   x: 0,
@@ -36,10 +36,10 @@ const holdBoardSpec = {
   borderColor: gray
 }
 const scoreBoardSpec = {
-  x: 21,
+  x: 20,
   y: 25,
-  width: 8,
-  height: 10,
+  width: 10,
+  height: 8,
   sq: 13,
   color: 'white',
   borderColor: 'white'
@@ -54,9 +54,6 @@ const PIECES = [
   [I, "#B8FEC3"],
   [J, "#A3E4D7"]
 ];
-
-var modal = document.getElementById('myModal');
-var span = document.getElementsByClassName("close")[0];
 
 // draw a square
 function drawSquare(x, y, color, sq, borderColor) {
@@ -81,10 +78,13 @@ ctx.fillStyle = "gray"
 ctx.fillText("HOLD", 295, 185);
 const scoreBoard = new Board(scoreBoardSpec)
 scoreBoard.drawBoard();
-ctx.font = "20px Arial";
-ctx.fillStyle = "gray"
-ctx.fillText("SCORE", 291, 320);
-ctx.fillStyle = gray
+ctx.fillText("SCORE:", 265, 370);
+ctx.font = "14px Arial";
+ctx.fillText(`0`, 330, 370);
+ctx.font = "16px Arial";
+ctx.fillText("LEVEL:", 265, 395);
+ctx.font = "14px Arial";
+ctx.fillText(`1`, 330, 395);
 
 function randomPiece() {
   let random = Math.floor(Math.random() * PIECES.length) // 0 -> 6
@@ -109,22 +109,33 @@ document.addEventListener("keydown", (e) => {
     p.moveDown();
     score += 1
     scoreBoard.drawBoard()
-    ctx.fillStyle = gray
-    ctx.fillText(`${score}`, 300, 350);
+    ctx.font = "16px Arial";
+    ctx.fillStyle = darkgray
+    ctx.fillText("SCORE:", 265, 370);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${score}`, 330, 370);
     if (score > 500) {
       level = Math.floor(score / 500)
     }
-    ctx.fillText(`${level}`, 300, 400);
+    ctx.font = "16px Arial";
+    ctx.fillText("LEVEL:", 265, 395);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${level}`, 330, 395);
   } else if (e.keyCode == 32 && !paused && gameStart) {
     p.fastMoveDown();
     score += 8
     scoreBoard.drawBoard()
-    ctx.fillStyle = gray
-    ctx.fillText(`${score}`, 300, 350);
+    ctx.font = "16px Arial";
+    ctx.fillStyle = darkgray
+    ctx.fillText("SCORE:", 265, 370);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${score}`, 330, 370);
     if (score > 500) {
       level = Math.floor(score / 500)
     }
-    ctx.fillText(`${level}`, 291, 400);
+    ctx.fillText("LEVEL:", 265, 395);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${level}`, 330, 395);
   } else if (e.keyCode == 27 && gameStart && !gameOver) {
     if (paused) {
       paused = false
@@ -140,10 +151,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-userName.addEventListener('submit',(e)=>{
-  const userInput = userName.name.value
-})
-
 // drop the piece every 1sec
 let gameStart = false;
 let dropStart = Date.now();
@@ -153,9 +160,14 @@ let score = 0;
 let speed = 2500;
 let level = 1;
 let combo = 0;
-
-ctx.fillText(`${score}`, 300, 350);
-ctx.fillText(`${level}`, 300, 400);
+ctx.fillStyle = darkgray
+ctx.fillText("SCORE:", 265, 370);
+ctx.font = "14px Arial";
+ctx.fillText(`${score}`, 330, 370);
+ctx.font = "16px Arial";
+ctx.fillText("LEVEL:", 265, 395);
+ctx.font = "14px Arial";
+ctx.fillText(`${level}`, 330, 395);
 
 function drop() {
   nextBoard.drawBoard()
@@ -171,34 +183,79 @@ function drop() {
   if (!gameOver) {
     requestAnimationFrame(drop);
   } else {
-    // fetch('http://localhost:3000/users',{
-    //   method: "POST",
-    //   headers: {
-    //     "accept":"application/json",
-    //     "content-type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     name: userName.name.value
-    //   })
-    // }).then(res => res.json()).then(data => new User(data))
-
-
+    scoreBoard.drawBoard()
+    ctx.fillText("LEVEL:",260,395);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${level}`,330,395);
+    ctx.font = "16px Arial";
+    ctx.fillText("SCORE:",260,370);
+    ctx.font = "14px Arial";
+    ctx.fillText(`${score}`,330,370);
+    fetch('http://localhost:3000/games', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        score: score,
+        userId: userObj.id
+      })
+    })
   }
 }
-var span = document.getElementsByClassName("close")[0];
+
 document.addEventListener('click', (e) => {
   if (e.target.value === "play") {
-    modal.style.display = "block";
-    span.onclick = function() {
-      modal.style.display = "none";
+    document.getElementById('myModal').style.display = 'block'
+  } else if (e.target.value === "resume") {
+    paused = false
+    audio.play();
+    playButton.firstElementChild.remove()
+  } else if (e.target.id === 'submit') {
+    e.preventDefault();
+    document.getElementById('myModal').style.display = 'none'
+    const userForm = document.getElementById('user-form')
+    const userName = userForm.name.value
+    if (!User.findByName(userName)) {
+      fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: userName
+          })
+        }).then(res => res.json())
+        .then(data => {
+          console.log(new User(data))
+        })
     }
     drop();
     gameStart = true;
     playButton.firstElementChild.remove()
     audio.play();
-  } else if (e.target.value === "resume") {
-    paused = false
-    audio.play();
-    playButton.firstElementChild.remove()
+    setTimeout(() => {
+      userObj = User.findByName(userName)
+    }, 2)
   }
+})
+
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('http://localhost:3000/users')
+    .then(response => response.json())
+    .then(userData => {
+      userData.map(function(userObj) {
+        new User(userObj)
+      })
+    })
+
+  fetch('http://localhost:3000/games')
+    .then(response => response.json())
+    .then(gameData => {
+      gameData.map(function(gameObj) {
+        new Game(gameObj)
+      })
+    })
 })

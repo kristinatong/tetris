@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Sigmar+One" rel="stylesheet">
+  <link rel="stylesheet" href="./css/w3.css">
   <link rel="stylesheet" href="./css/styles.css">
   <title>Tetris</title>
   <style></style>
@@ -16,19 +17,68 @@
   <div id="play-button"><button type="button" value="play">PLAY</button></div>
   <canvas id="game" width="400" height="500"></canvas>
 
-  <div id="myModal" class="modal">
+<!-- The Modal -->
+<div id="myModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+      <header class="w3-container w3-teal">
+        <!-- <span id='close-form' class="w3-button w3-display-topright">&times;</span> -->
+        <h2>Tetris</h2>
+      </header>
+      <div class="w3-container">
+        <br>
+        <form id="user-form">
+          <input name='name' placeholder='Name'></input>
+          <!-- <input type='button'></input> -->
+          <button id='submit' type='submit'>Submit</button>
+        </form>
+        <br>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>High Scores</p>
+      </footer>
+      <div class="w3-container">
+        <table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr>
+</table>
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form id="user-form">
-        Name:<br>
-        <input type="text" name="name"></input><br>
-        <input type="submit"></input>
-      </form>
+      </div>
     </div>
-
   </div>
+</div>
 
   <script type="text/javascript" src="../frontend/src/pieceMatrices.js"></script>
   <script type="text/javascript" src="../frontend/src/board.js"></script>
