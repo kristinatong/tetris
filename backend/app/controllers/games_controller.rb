@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create({score:params[:score],user_id:params[:userId]})
+    @game = Game.create(score:params[:score],user_id:params[:user][:id])
     render json: @game, status: :accepted
   end
 end
