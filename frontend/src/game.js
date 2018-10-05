@@ -5,12 +5,17 @@ class Game {
   constructor({
     id,
     score,
-    userId
+    user
   }) {
     this.id = id
     this.score = score
-    this.userId = userId
+    this.user = user
     allGames.push(this)
+  }
+
+  static getHighScores(){
+    const sortedGames = allGames.sort((a,b) => b.score - a.score)
+    return sortedGames.slice(0,5)
   }
 }
 // })()

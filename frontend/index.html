@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
@@ -10,76 +9,57 @@
   <title>Tetris</title>
   <style></style>
 </head>
-
 <body>
   <h1>Tetris</h1>
   <audio id="audio"><source src="tetris-gameboy-02.mp3"></audio>
+  <audio id="sad-trombone"><source src="sad-trombone.mp3"></audio>
   <div id="play-button"><button type="button" value="play">PLAY</button></div>
   <canvas id="game" width="400" height="500"></canvas>
-
-<!-- The Modal -->
-<div id="myModal" class="w3-modal">
+  <!-- The Modal -->
+  <div id="myModal" class="w3-modal">
     <div class="w3-modal-content w3-animate-zoom">
       <header class="w3-container w3-teal">
         <!-- <span id='close-form' class="w3-button w3-display-topright">&times;</span> -->
-        <h2>Tetris</h2>
+        <h1 style="margin: 25px 260px;">Tetris</h1>
       </header>
       <div class="w3-container">
         <br>
-        <form id="user-form">
-          <input name='name' placeholder='Name'></input>
+        <form id="user-form" style="margin: 25px 150px; width: 220px">
+          <input type="text" name="name" placeholder='Name'></input>
           <!-- <input type='button'></input> -->
-          <button id='submit' type='submit'>Submit</button>
+          <button id='submit' type='submit'  style="margin: -135px -190px" font-family: 'myFont', Arial, Helvetica, sans-serif;>Submit</button>
         </form>
         <br>
       </div>
       <footer class="w3-container w3-teal">
-        <p>High Scores</p>
+        <h1 style="margin: 25px 210px;">High Scores</h2>
       </footer>
-      <div class="w3-container">
-        <table>
-  <tr>
-    <th>Rank</th>
-    <th>Name</th>
-    <th>Score</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-</table>
+<div style="overflow-x:auto;">
+  <table id='high-scores' style="margin: 0 -55px">
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Score</th>
+    </tr>
 
-      </div>
-    </div>
-  </div>
+  </table>
 </div>
-
+  <!-- <div id="score-container" class="w3-container">
+    <div class="row">
+  <div class="column left" style="background-color:white;">
+    <h2>Rank</h2>
+    <p>1</p>
+  </div>
+  <div class="column right" style="background-color:white;">
+    <h2>Player</h2>
+    <p>Kris</p>
+  </div>
+  <div class="column right" style="background-color:white;">
+    <h2>Score</h2>
+    <p>234923048</p>
+  </div>
+</div> -->
+</div>
   <script type="text/javascript" src="../frontend/src/pieceMatrices.js"></script>
   <script type="text/javascript" src="../frontend/src/board.js"></script>
   <script type="text/javascript" src="../frontend/src/piece.js"></script>
@@ -87,5 +67,4 @@
   <script type="text/javascript" src="../frontend/src/game.js"></script>
   <script type="text/javascript" src="../frontend/src/index.js"></script>
 </body>
-
 </html>

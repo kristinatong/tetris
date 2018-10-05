@@ -9,24 +9,23 @@ class Piece {
     this.y = -2;
   }
 
-  draw(){
-    for(let r = 0; r < this.activePattern.length; r++){
-        for(let c = 0; c < this.activePattern.length; c++){
-            if( this.activePattern[r][c]){
-                drawSquare(this.x + c,this.y + r, this.color,this.sq,gray);
-            }
+  draw() {
+    for (let r = 0; r < this.activePattern.length; r++) {
+      for (let c = 0; c < this.activePattern.length; c++) {
+        if (this.activePattern[r][c]) {
+          drawSquare(this.x + c, this.y + r, this.color, this.sq, "#F5F5F5");
         }
+      }
     }
   }
 
-  // undraw a piece
-  undraw(){
-    for(let r = 0; r < this.activePattern.length; r++){
-        for(let c = 0; c < this.activePattern.length; c++){
-            if( this.activePattern[r][c]){
-                drawSquare(this.x + c,this.y + r, empty,this.sq,gray);
-            }
+  undraw() {
+    for (let r = 0; r < this.activePattern.length; r++) {
+      for (let c = 0; c < this.activePattern.length; c++) {
+        if (this.activePattern[r][c]) {
+          drawSquare(this.x + c, this.y + r, empty, this.sq, '#F5F5F5');
         }
+      }
     }
   }
 
@@ -89,7 +88,6 @@ class Piece {
     this.moveDown()
   }
 
-  //rotate
   rotate() {
     let nextPattern = this.matrices[(this.pattern + 1) % this.matrices.length];
     let kick = 0;
@@ -125,15 +123,15 @@ class Piece {
     nextPiece = randomPiece()
   }
 
-  hold(){
-    if(!holdPiece){
+  hold() {
+    if (!holdPiece) {
       holdBoard.drawBoard()
       holdPiece = p
       p = nextPiece
       nextPiece = randomPiece()
       gameBoard.drawBoard();
       holdBoard.drawPiece(holdPiece)
-    }else{
+    } else {
       p = [holdPiece, holdPiece = p][0];
       holdBoard.drawBoard()
       holdBoard.drawPiece(holdPiece)
@@ -142,70 +140,62 @@ class Piece {
   }
 
   lock() {
-    for(let j = 0; j < this.activePattern.length; j++){
-        for(let i = 0; i < this.activePattern.length; i++){
-            // we skip the vacant squares
-            if( !this.activePattern[j][i]){
-                continue;
-            }
-            // pieces to lock on top = game over
-            if(this.y + j < 0){
-                alert("Game Over");
-                // stop request animation frame
-                gameOver = true;
-                break;
-            }
-            // we lock the piece
-            gameBoard.board[this.y+j][this.x+i] = this.color;
+    for (let j = 0; j < this.activePattern.length; j++) {
+      for (let i = 0; i < this.activePattern.length; i++) {
+        // we skip the vacant squares
+        if (!this.activePattern[j][i]) {
+          continue;
         }
+        // pieces to lock on top = game over
+        if (this.y + j < 0) {
+          audio.pause();
+          sadTrombone.play();
+          alert("Game Over");
+          // stop request animation frame
+          gameOver = true;
+          break;
+        }
+        // we lock the piece
+        gameBoard.board[this.y + j][this.x + i] = this.color;
+      }
     }
     // remove full rows
-    for(let j = 0; j < gameBoard.height; j++){
-        let isRowFull = true;
-        for(let i = 0; i < gameBoard.width; i++){
-            isRowFull = isRowFull && (gameBoard.board[j][i] != empty);
+    for (let j = 0; j < gameBoard.height; j++) {
+      let isRowFull = true;
+      for (let i = 0; i < gameBoard.width; i++) {
+        isRowFull = isRowFull && (gameBoard.board[j][i] != empty);
+      }
+      if (isRowFull) {
+        // if the row is full
+        // we move down all the rows above it
+        for (let y = j; y > 1; y--) {
+          for (let i = 0; i < gameBoard.width; i++) {
+            gameBoard.board[y][i] = gameBoard.board[y - 1][i];
+          }
         }
-        if(isRowFull){
-            // if the row is full
-            // we move down all the rows above it
-            for(let y = j; y > 1; y--){
-                for(let i = 0; i < gameBoard.width; i++){
-                    gameBoard.board[y][i] = gameBoard.board[y-1][i];
-                }
-            }
-            // the top row board[0][..] has no row above it
-            for(let i = 0; i < gameBoard.width; i++){
-                gameBoard.board[0][i] = empty;
-            }
-            // increment the score
-            combo += 1
+        // the top row board[0][..] has no row above it
+        for (let i = 0; i < gameBoard.width; i++) {
+          gameBoard.board[0][i] = empty;
         }
+        combo += 1
+      }
     }
 
-    // update the board
-    if(combo==1){
-      score += level*100
-    }else if(combo==2){
-      score += level*300;
-    }else if(combo==3){
-      score += level*500
-    }else if(combo==4){
-      score += level*800
+    if (combo == 1) {
+      score += level * 100
+    } else if (combo == 2) {
+      score += level * 300;
+    } else if (combo == 3) {
+      score += level * 500
+    } else if (combo == 4) {
+      score += level * 800
     }
     combo = 0;
-    if(score > 500){
-      level = Math.floor(score/500)
+    if (score > 500) {
+      level = Math.floor(score / 500)
     }
-    ctx.fillStyle=darkgray
-    ctx.font = "16px Arial";
-    scoreBoard.drawBoard()
-    ctx.fillText("LEVEL:",260,395);
-    ctx.font = "14px Arial";
-    ctx.fillText(`${level}`,330,395);
-    ctx.font = "16px Arial";
-    ctx.fillText("SCORE:",260,370);
-    ctx.font = "14px Arial";
-    ctx.fillText(`${score}`,330,370);
+
+    scoreBoard.getScore(score, level)
     gameBoard.drawBoard();
     nextBoard.drawBoard();
   }
