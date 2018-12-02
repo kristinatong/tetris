@@ -14,7 +14,7 @@ You'll need to install:
 
 * PostgreSQL
 
-### Installation
+### Installing
 
 * Navigate to the `backend` folder and run:
 
