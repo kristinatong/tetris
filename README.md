@@ -31,7 +31,7 @@ You'll need to install:
   rails db:migrate
   rails s
   ```
-* In another terminal tab, navigate to the `backend` folder and run:
+* In another terminal tab, navigate to the `frontend` folder and run:
 
   ```sh
   open index.html
