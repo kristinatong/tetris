@@ -18,7 +18,7 @@ You'll need to install:
 
 OS X & Linux:
 
-* /backend:
+* Navigate to the `backend` folder:
 
   ```sh
   bundle install
@@ -26,16 +26,14 @@ OS X & Linux:
 
 ### Development setup
 
-* /backend: 
-  
-  The Tetris API is built using postgreSQL. Please install postgreSQL on your computer before attempting to load the API on your local server.
+* Navigate to the `backend` folder: 
 
   ```sh
   rails db:create
   rails db:migrate
   rails s
   ```
-* /frontend:
+* In another terminal tab, navigate to the `backend` folder:
 
   ```sh
   open index.html
