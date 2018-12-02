@@ -10,17 +10,28 @@
 
 OS X & Linux:
 
-```sh
-bundle install
-```
+* Backend:
+
+  ```sh
+  bundle install
+  ```
 
 ## Development setup
 
-```sh
-rails db:create
-rails db:migrate
-rails s
-```
+* Backend: 
+  
+  The Tetris API is built using postgreSQL. Please install postgreSQL on your computer before attempting to load the API on your local server.
+
+  ```sh
+  rails db:create
+  rails db:migrate
+  rails s
+  ```
+* Frontend:
+
+  ```sh
+  open index.html
+  ```
 
 ## Release History
 
