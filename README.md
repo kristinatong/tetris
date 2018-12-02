@@ -54,5 +54,3 @@ You'll need to install:
 
 * **Arielle Ramirez** - [arielleramirez](https://github.com/arielleramirez)
 * **Kristina Tong** - [kristinatong](https://github.com/kristinatong)
-
-See also the list of [contributors](https://github.com/kristinatong/tetris/contributors) who participated in this project.
