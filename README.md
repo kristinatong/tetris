@@ -45,6 +45,7 @@ OS X & Linux:
 
 * [Ruby on Rails](https://rubyonrails.org/) - Server-side web application framework
 * [PostgreSQL](https://www.postgresql.org/) - Database for Active Record
+* Front-end written in vanilla Javascript, HTML5 and CSS for styling.
 
 ## Contributing
 
