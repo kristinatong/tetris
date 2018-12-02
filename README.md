@@ -1,5 +1,5 @@
 # Tetris
-> A modern twist to the classic game, Tetris, built on Javascript and HTML5.
+A modern twist to the classic game, Tetris, built on Javascript and HTML5.
 
 <p align="center">
   <img width="850" height="522" src="https://github.com/kristinatong/tetris/blob/master/demos/tetris4.gif"><br>
