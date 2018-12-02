@@ -16,8 +16,6 @@ You'll need to install:
 
 ### Installation
 
-OS X & Linux:
-
 * Navigate to the `backend` folder and run:
 
   ```sh
