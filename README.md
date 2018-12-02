@@ -18,7 +18,7 @@ You'll need to install:
 
 OS X & Linux:
 
-* Navigate to the `backend` folder:
+* Navigate to the `backend` folder and run:
 
   ```sh
   bundle install
@@ -26,14 +26,14 @@ OS X & Linux:
 
 ### Development setup
 
-* Navigate to the `backend` folder: 
+* While still in the `backend` folder, run: 
 
   ```sh
   rails db:create
   rails db:migrate
   rails s
   ```
-* In another terminal tab, navigate to the `backend` folder:
+* In another terminal tab, navigate to the `backend` folder and run:
 
   ```sh
   open index.html
