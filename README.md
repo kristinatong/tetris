@@ -6,7 +6,15 @@
   <a href="https://vimeo.com/303965386"><b>Demo Video</b></a>
 </p>
 
-## Installation
+## Getting Started
+
+### Prerequisites
+
+You'll need to install:
+
+* PostgreSQL
+
+### Installation
 
 OS X & Linux:
 
@@ -16,7 +24,7 @@ OS X & Linux:
   bundle install
   ```
 
-## Development setup
+### Development setup
 
 * /backend: 
   
@@ -33,21 +41,10 @@ OS X & Linux:
   open index.html
   ```
 
-## Release History
+## Built With
 
-* 0.1.0
-    * First official release
-
-## Meta
-
-Arielle Ramirez
-
-[https://github.com/arielleramirez](https://github.com/arielleramirez)
-
-Kristina Tong - kristina.tong@gmail.com
-
-[https://github.com/kristinatong](https://github.com/kristinatong)
-
+* [Ruby on Rails](https://rubyonrails.org/) - Server-side web application framework
+* [PostgreSQL](https://www.postgresql.org/) - Database for Active Record
 
 ## Contributing
 
@@ -56,3 +53,15 @@ Kristina Tong - kristina.tong@gmail.com
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
+
+## Versioning
+
+* 0.1.0
+    * First official release
+
+## Authors
+
+* **Arielle Ramirez** - [arielleramirez](https://github.com/arielleramirez)
+* **Kristina Tong** - [kristinatong](https://github.com/kristinatong)
+
+See also the list of [contributors](https://github.com/kristinatong/tetris/contributors) who participated in this project.
