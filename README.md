@@ -1,9 +1,10 @@
 # Tetris
 > A modern twist to the classic game, Tetris, built on Javascript and HTML5.
 
-![tetris demo](https://github.com/kristinatong/tetris/blob/master/demos/tetris4.gif)
-
-### [Demo Video](https://vimeo.com/303965386)
+<p align="center">
+  <img src="https://github.com/kristinatong/tetris/blob/master/demos/tetris4.gif"><br>
+  <a href="https://vimeo.com/303965386"><b>Demo Video</b></a>
+</p>
 
 ## Installation
 
