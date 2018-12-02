@@ -20,23 +20,17 @@ You'll need to install:
 
   ```sh
   bundle install
-  ```
-
-### Development setup
-
-* While still in the `backend` folder, run: 
-
-  ```sh
   rails db:create
   rails db:migrate
   rails s
   ```
+  
 * In another terminal tab, navigate to the `frontend` folder and run:
 
   ```sh
   open index.html
   ```
-
+  
 ## Built With
 
 * [Ruby on Rails](https://rubyonrails.org/) - Server-side web application framework
