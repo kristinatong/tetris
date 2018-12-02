@@ -2,7 +2,7 @@
 > A modern twist to the classic game, Tetris, built on Javascript and HTML5.
 
 <p align="center">
-  <img src="https://github.com/kristinatong/tetris/blob/master/demos/tetris4.gif"><br>
+  <img width="850" height="522" src="https://github.com/kristinatong/tetris/blob/master/demos/tetris4.gif"><br>
   <a href="https://vimeo.com/303965386"><b>Demo Video</b></a>
 </p>
 
@@ -28,6 +28,10 @@ rails s
     * First official release
 
 ## Meta
+
+Arielle Ramirez
+
+[https://github.com/arielleramirez](https://github.com/arielleramirez)
 
 Kristina Tong - kristina.tong@gmail.com
 
